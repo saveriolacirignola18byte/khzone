@@ -21,6 +21,52 @@ Nasce apposta per allenarti meglio durante il corso, sui selfwork e in vista del
 5. **Un branch per milestone**, commit piccoli e frequenti con messaggi che spiegano il perché, non il cosa. *(Il progetto guidato del corso userà quasi certamente un flusso più semplice, commit diretti su `main` dopo ogni user story: va benissimo lì, è pensato per un team che deve andare veloce insieme. Qui invece ti alleni con branch e commit curati perché è l'abitudine che ti servirà davvero in azienda.)*
 6. **Capisci, non memorizzare.** Non imparare a memoria i tag HTML, le proprietà CSS, i metodi degli array o i comandi Artisan: impara a riconoscere di che *tipo* di pezzo hai bisogno in un dato momento (un contenitore semantico, un modo per iterare, un modo per validare un input...) e come questi pezzi si combinano tra loro a livello logico. Il nome esatto e la sintassi precisa si cercano al bisogno — documentazione ufficiale, MDN, Stack Overflow — e restano in testa da soli, naturalmente, dopo che li hai scritti e cercati abbastanza volte. Impararli a memoria come prima cosa è tempo speso male: nel lavoro vero si cerca, non si recita. Vale per ogni tecnologia di questa roadmap, non solo per l'HTML.
 
+## Metodo di studio
+
+Un problema pratico da risolvere prima di tutto il resto: sulla piattaforma del corso le lezioni si sbloccano in sequenza, e per andare avanti devi superare i selftest di quelle precedenti. Non puoi "saltare avanti" a guardare, per dire, la lezione di Git del Modulo 4 mentre sei ancora al Modulo 1 — quindi questa sezione ti dà per iscritto, da subito, quello che altrimenti aspetteresti mesi per sentirti dire (Git più sotto; il resto è un metodo che vale per ogni lezione, non solo per quella).
+
+**Per ogni lezione video, quando arrivi a sbloccarla:**
+
+1. Prima ancora di guardarla, leggi solo il titolo e scriviti (due righe, anche a mente) cosa ti aspetti che tratti — ti obbliga a un minimo di attenzione attiva invece di premere play e basta.
+2. Se hai a disposizione una trascrizione o del materiale scritto della lezione, caricalo su **NotebookLM** insieme al resto del modulo — meglio farlo *prima* di guardare il video, non dopo — e fatti generare qualche domanda di verifica sul contenuto. Prova a rispondere: se rispondi bene alla maggior parte, guarda il video a velocità aumentata (1.5x-2x) solo per riempire i buchi rimasti; se non rispondi bene, guardalo con calma e poi torna alle domande. L'idea è usare NotebookLM per interrogarti attivamente sul contenuto, non solo come sostituto passivo del video.
+3. Appena il concetto è chiaro almeno a grandi linee, applicalo subito in KHZone — non aspettare di aver finito tutto il modulo. È il motivo per cui esiste questa roadmap: tenere vicini nel tempo "il concetto appena visto" e "il codice che lo usa".
+4. Fai il selftest/quiz della piattaforma **dopo** aver applicato il concetto in KHZone, non prima: ci arriverai avendo già sbagliato (e corretto) qualcosa per conto tuo, ed è lì che un concetto si fissa per davvero — non prima.
+
+**Quando resti bloccato scrivendo codice** (non durante una lezione, ma mentre lavori su KHZone):
+
+- Prima domanda da farti: è un dettaglio di sintassi che dimenticherai comunque tra un'ora, o un dubbio su come le cose si incastrano tra loro?
+- Nel primo caso: documentazione ufficiale o una ricerca mirata (Stack Overflow, MDN per JS/CSS, la documentazione di Laravel) — è esattamente quello che farai da professionista, e ricordarti *dove* cercare conta più che ricordarti la risposta esatta (principio 6).
+- Nel secondo caso — un dubbio concettuale, un "perché dovrei strutturarlo così", una decisione architetturale — chiedi a **Claude**: è più utile per ragionare insieme sul perché, non solo per il come.
+- **ChatGPT resta un fallback**, da usare solo se Claude non è disponibile: mai la prima scelta, e mai per farti risolvere un esercizio al posto tuo — se lo fai, il selftest subito dopo te lo dimostrerà.
+
+### Git, spiegato qui perché non puoi ancora vederlo sulla piattaforma
+
+Un repository è una cartella di cui git tiene la storia completa. Un **commit** è una fotografia del progetto in un istante, con un messaggio che spiega *perché* l'hai fatta — non cosa hai cambiato, quello si vede già dal diff. Prima di poter fare un commit scegli quali modifiche includerci passando dalla **staging area** (`git add`): puoi avere modifiche nella cartella di lavoro che non hai ancora deciso se committare o no.
+
+Un **branch** è un puntatore mobile a un commit: ti permette di lavorare su qualcosa (una milestone, una feature) senza toccare la versione "buona" del progetto, di solito chiamata `main`. Quando il lavoro sul branch è pronto e funziona, lo unisci (`merge`) in `main`. Un **remote** è una copia del repository ospitata altrove (GitHub, nel tuo caso) con cui la tua copia locale si sincronizza: `push` manda i tuoi commit al remote, `pull` porta giù quelli che non hai ancora.
+
+Il flusso concreto che userai per ogni milestone, da questa in poi:
+
+```bash
+git checkout -b milestone-1-html-css     # crea e passa a un nuovo branch
+# ... lavori, modifichi file ...
+git add index.html style.css             # metti in staging solo quello che vuoi committare
+git commit -m "aggiunge homepage statica con categorie"
+git push -u origin milestone-1-html-css  # la prima volta; dopo basta `git push`
+```
+
+Quando la milestone è completa e gira, invece di mergiare in locale apri una **Pull Request** su GitHub dal branch verso `main` e mergiala da lì: anche lavorando da solo, è l'abitudine che userai identica in azienda, e lascia una traccia leggibile di cosa hai fatto e perché — molto più utile di una history con un solo commit gigante.
+
+Prima o poi due branch modificheranno le stesse righe e otterrai un **conflitto**: git te lo segnala e ti chiede di decidere tu. Apri il file, cerca i marcatori `<<<<<<<`, `=======`, `>>>>>>>`, scegli (o combina a mano) cosa tenere, rimuovi i marcatori, poi `git add` e `git commit` per chiudere il merge. Non è un errore che hai causato tu: è normale, e prima lo affronti meglio è.
+
+**Cosa cercare online per partire bene** (in quest'ordine, non tutto insieme):
+- La documentazione ufficiale di Git (cerca "git-scm.com documentation") per i comandi che userai davvero: `status`, `add`, `commit`, `branch`, `checkout`/`switch`, `merge`, `push`, `pull`, `log`.
+- "Learn Git Branching" — un tool interattivo e visuale molto conosciuto per imparare branch e merge senza rischiare nulla sul tuo repository vero.
+- "conventional commits" — una convenzione diffusa per scrivere messaggi di commit in modo uniforme; non è obbligatoria, ma sapere che esiste torna utile.
+- "git merge vs rebase" — solo a livello concettuale per ora: non ti serve usare il rebase da subito, ma sapere che esiste un'alternativa al merge (e perché se ne discute tanto) evita che ti spaventi la prima volta che lo senti nominare.
+
+Quando arriverai per davvero al Modulo 4 e sbloccherai il video ufficiale su Git & GitHub, guardalo comunque: è un buon ripasso, e a quel punto avrai già mesi di pratica reale alle spalle invece di partire da zero.
+
 ## Le fonti dati
 
 | Fonte | Endpoint | Cosa ci prendi | Note |
@@ -54,16 +100,17 @@ Le prime milestone useranno dati finti apposta: non è un compromesso di cui ver
 ---
 
 ### Milestone 0 — Setup, Git e branch workflow, metodo di studio
-*(Modulo 1 · Introduzione e Fondamenti — Modulo 4 · Git & GitHub, vista in anticipo — Modulo 5 · Apprendimento e Problem Solving)*
+*(Modulo 1 · Introduzione e Fondamenti — Modulo 5 · Apprendimento e Problem Solving — Git dal "Metodo di studio" qui sopra, non dal Modulo 4: non puoi ancora sbloccarlo)*
 
 **Obiettivo:** repo pronto, workflow git corretto fin dal primo commit, ambiente e metodo di studio rodati. Questa repo probabilmente finirà nel tuo portfolio: vale la pena non prendere brutte abitudini proprio all'inizio.
 
 **Cosa fai:**
-- Prima ancora di scrivere una riga di HTML, guarda la lezione "Git & GitHub" del Modulo 4 — puoi saltarla avanti nel corso, non dipende da nient'altro. Configura il repo: `.gitignore` sensato, un branch dedicato per ogni milestone (mai commit diretti su `main`), commit piccoli con messaggi che spiegano il perché non il cosa.
+- Leggi la sezione "Metodo di studio" e "Git, spiegato qui" più sopra in questo README prima di scrivere una riga di codice: è pensata apposta per darti da subito quello che il Modulo 4 (Git & GitHub) ti darebbe più avanti, e che la piattaforma non ti lascia ancora sbloccare.
+- Configura il repo: `.gitignore` sensato, un branch dedicato per ogni milestone (mai commit diretti su `main`), commit piccoli con messaggi che spiegano il perché non il cosa.
 - Struttura iniziale del repo (`index.html` vuoto, cartella `/assets`, cartella `/docs`) sul primo branch di lavoro, non su `main`.
 - In `/docs/note-fonti.md`, esplora a mano (da browser, senza scrivere codice) 3-4 query diverse sull'API della KH Wiki e annota cosa restituiscono e cosa non ti aspettavi.
 - Apri la `Special:ApiSandbox` della KH Wiki e prova almeno un paio di azioni diverse da quella mostrata sopra.
-- Carica le lezioni dei Moduli 1 e 5 su NotebookLM e scriviti un tuo mini metodo di studio: come organizzi le sessioni, e in che ordine cerchi aiuto quando resti bloccato. Un ordine che funziona: **NotebookLM** per la teoria del corso, **ricerca su Google/Stack Overflow** "alla vecchia maniera" per problemi pratici già affrontati da altri (è ancora il modo più veloce per capire un errore preciso) — e solo se il dubbio è più di fondo, concettuale o architetturale, chiedi a **Claude**. **ChatGPT resta un fallback**, da usare solo se Claude non è disponibile: mai la prima scelta, e mai per farti risolvere un esercizio al posto tuo.
+- Carica le lezioni dei Moduli 1 e 5 su NotebookLM seguendo il protocollo del "Metodo di studio": è la prima occasione buona per provarlo davvero, non solo per leggerlo.
 
 **Da approfondire:** `git branch`, `git checkout -b`/`git switch -c`, `git merge` (fast-forward vs no-ff), `git log --oneline --graph`, differenza tra branch locale e remoto, `git push -u origin <branch>`; sintassi Markdown di base; MediaWiki Action API (`action=query`, `list=categorymembers`, `action=parse`, `meta=siteinfo&siprop=extensions`); perché le API pubbliche hanno rate limit e cosa succede se li ignori.
 
