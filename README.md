@@ -32,6 +32,8 @@ Nasce apposta per allenarti meglio durante il corso, sui selfwork e in vista del
 
 Prima regola pratica: non fidarti di questa tabella e basta. Ogni wiki MediaWiki espone una sandbox interattiva su `/wiki/Special:ApiSandbox` — usala per esplorare da solo cosa puoi chiedere prima di scrivere codice. Con `action=query&meta=siteinfo&siprop=extensions` scopri anche quali estensioni (es. estrazione di testo semplice) sono attive su quella specifica wiki: non tutte le wiki Fandom hanno le stesse.
 
+Per esplorare e testare queste chiamate senza scrivere ancora codice (e più avanti per testare le tue stesse rotte Laravel), usa **Bruno**: è un amico, un client di API testing open-source alternativo a Postman. La differenza che conta per te: Bruno salva le collection come file di testo semplice (`.bru`) invece che in un formato proprietario, quindi puoi versionarle in git insieme al codice — una cartella tipo `/api-tests` con le richieste già pronte è documentazione viva del progetto, non uno strumento usa-e-getta.
+
 Esempio verificato e funzionante (KH Wiki, elenco pagine di una categoria):
 ```
 https://kingdomhearts.fandom.com/api.php?action=query&list=categorymembers&cmtitle=Category:Keyblades&format=json&cmlimit=20
@@ -155,6 +157,7 @@ Qui vale più che altrove il principio 6: non serve sapere a memoria ogni tag o 
 **Obiettivo:** risolvere il problema del CORS con un backend vero, e introdurre l'OOP.
 
 **Cosa fai:**
+- Prima di scrivere il proxy, esplora e salva in Bruno le chiamate che ti servono davvero verso la KH Wiki (parametri, risposta, errori) — è più veloce che scoprirlo a suon di `var_dump` nel codice.
 - Script PHP (senza framework) che fa da proxy: riceve una richiesta dal tuo frontend, chiama l'API della KH Wiki server-side, normalizza la risposta in un JSON tuo, pulito.
 - Passa alla OOP: una classe `WikiClient` (fa le chiamate HTTP), una `Category`/`Page` (rappresentano i dati), dependency injection tra loro invece di tutto scritto in un file unico.
 
@@ -173,6 +176,7 @@ Qui vale più che altrove il principio 6: non serve sapere a memoria ogni tag o 
 - Rotte per `/personaggi`, `/mondi`, `/giochi`, `/sviluppatori`; controller che parlano con un service `WikiClient` (porta qui la classe del modulo precedente).
 - Viste Blade con componenti riutilizzabili per le card (niente HTML duplicato tra pagine).
 - Una form "segnala un errore in questa scheda" con invio mail vero.
+- Una collection Bruno con le richieste alle tue nuove rotte (`/personaggi`, `/mondi`...), versionata in `/api-tests` insieme al codice: da qui in poi, quando cambi una rotta, aggiorni anche la richiesta di test.
 
 **Da approfondire:** `php artisan make:controller`/`make:mail`; routing (`Route::get`, route model binding, named routes); direttive Blade (`@if`, `@foreach`, `@component`/`<x-component>`) e differenza tra `{{ }}` (escaping automatico) e `{!! !!}`; facade `Illuminate\Support\Facades\Http` per le chiamate esterne lato server; `.env` e `config/services.php` per gestire secrets/API key senza committarle; Mailable e un driver di test per le email (es. log o Mailtrap).
 
@@ -304,3 +308,16 @@ Questo secondo limite in realtà è quasi un vantaggio per te: ti costringe a ve
 - Fai leggere il README a qualcuno che non conosce il progetto e guarda dove si blocca: quello è quello che manca.
 
 **Da approfondire:** differenza tra un README "per me" (una roadmap) e un README "per chi arriva da fuori" (badge, screenshot, sezione Features, Tech stack, Getting Started); come si scrive una sezione "Getting Started" che funziona senza contesto pregresso.
+
+---
+
+### Milestone 15 — Il diagramma che spiega tutto
+
+**Obiettivo:** un diagramma che chiunque — anche tu, tra sei mesi — possa guardare e capire come gira KHZone senza leggere una riga di codice.
+
+**Cosa fai:**
+- Con **draw.io** (diagrams.net — gratuito, esiste anche come estensione VS Code) disegna il flusso completo: richiesta del browser → rotta Laravel → controller → service `WikiClient` → API esterne (KH Wiki, Wikipedia, RAWG) → cache/database → job di sync asincrono → risposta (Blade/Livewire) → utente. Se hai fatto le Milestone 11-13, includi anche dove si inseriscono Docker/Render nel quadro.
+- Salva il file sorgente `.drawio` (è XML, si versiona in git senza problemi) in `/docs/architettura.drawio`, ed esporta anche un `.svg`/`.png` da incorporare nel README con `![architettura](docs/architettura.png)`.
+- *(Bonus, facoltativo)* un secondo diagramma più a grana fine solo sul flusso dati: per ogni campo di una scheda (nome, immagine, descrizione...), da quale API arriva, che trasformazione subisce, dove viene cachato.
+
+**Da approfondire:** differenza tra un diagramma di flusso (decisioni/passi in sequenza) e uno architetturale (componenti e come comunicano tra loro); un'occhiata al C4 model (solo i primi due livelli, come ispirazione, non serve seguirlo alla lettera); perché conviene versionare il sorgente `.drawio` e non solo l'immagine esportata.
