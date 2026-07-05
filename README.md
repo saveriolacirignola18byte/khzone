@@ -25,14 +25,40 @@ Nasce apposta per allenarti meglio durante il corso, sui selfwork e in vista del
 
 Un problema pratico da risolvere prima di tutto il resto: sulla piattaforma del corso le lezioni si sbloccano in sequenza, e per andare avanti devi superare i selftest di quelle precedenti. Non puoi "saltare avanti" a guardare, per dire, la lezione di Git del Modulo 4 mentre sei ancora al Modulo 1 — quindi questa sezione ti dà per iscritto, da subito, quello che altrimenti aspetteresti mesi per sentirti dire (Git più sotto; il resto è un metodo che vale per ogni lezione, non solo per quella).
 
-**Per ogni lezione video, quando arrivi a sbloccarla:**
+La scelta di fondo: **i video non li guardi**. Ti fai un'idea di quello che contengono in modo attivo passando dalla trascrizione caricata su NotebookLM, non guardando passivamente uno schermo per 20 minuti. Il ragionamento con cui usi NotebookLM è lo stesso identico principio 6: non ti serve "aver visto il video", ti serve capire il concetto ed essere in grado di ritrovarlo/riapprofondirlo quando ti serve.
 
-1. Prima ancora di guardarla, leggi solo il titolo e scriviti (due righe, anche a mente) cosa ti aspetti che tratti — ti obbliga a un minimo di attenzione attiva invece di premere play e basta.
-2. Se hai a disposizione una trascrizione o del materiale scritto della lezione, caricalo su **NotebookLM** insieme al resto del modulo — meglio farlo *prima* di guardare il video, non dopo — e fatti generare qualche domanda di verifica sul contenuto. Prova a rispondere: se rispondi bene alla maggior parte, guarda il video a velocità aumentata (1.5x-2x) solo per riempire i buchi rimasti; se non rispondi bene, guardalo con calma e poi torna alle domande. L'idea è usare NotebookLM per interrogarti attivamente sul contenuto, non solo come sostituto passivo del video.
-3. Appena il concetto è chiaro almeno a grandi linee, applicalo subito in KHZone — non aspettare di aver finito tutto il modulo. È il motivo per cui esiste questa roadmap: tenere vicini nel tempo "il concetto appena visto" e "il codice che lo usa".
-4. Fai il selftest/quiz della piattaforma **dopo** aver applicato il concetto in KHZone, non prima: ci arriverai avendo già sbagliato (e corretto) qualcosa per conto tuo, ed è lì che un concetto si fissa per davvero — non prima.
+### Il flusso per ogni lezione, senza guardare il video
 
-**Quando resti bloccato scrivendo codice** (non durante una lezione, ma mentre lavori su KHZone):
+1. **Quando sblocchi una nuova lezione**, prima di tutto leggi solo il titolo e scriviti (due righe, anche a mente) cosa ti aspetti che tratti — ti obbliga a un minimo di attenzione attiva invece di partire alla cieca.
+2. **Recupera la trascrizione**, non il video: controlla per primo se la piattaforma offre già sottotitoli/trascrizione scaricabile per quella lezione (spesso c'è un tasto "CC" o "trascrizione" nel player: se c'è, usa quella, è testo già pulito). Se non c'è, estrai solo l'audio della lezione e caricalo **direttamente come fonte in NotebookLM**: accetta file audio (mp3/wav, fino a 200MB) oltre a PDF/testo/Google Docs/URL, quindi non ti serve un servizio di trascrizione esterno — carica l'audio e lascia che sia NotebookLM a elaborarlo.
+3. **Aggiungi questa fonte al notebook del blocco di argomento in cui sei** (vedi la regola sotto per capire quale). Fatti generare da NotebookLM qualche domanda di verifica sul contenuto appena caricato e prova a rispondere.
+4. Se rispondi bene alla maggior parte delle domande, hai capito abbastanza per andare avanti. Se no, non torni al video — rileggi la trascrizione o chiedi a NotebookLM di spiegartelo in un altro modo, con un esempio diverso, più semplice, ecc. Il video resta l'ultima risorsa, per un dubbio specifico che nemmeno NotebookLM riesce a chiarirti — non il punto di partenza.
+5. Appena il concetto è chiaro almeno a grandi linee, applicalo subito in KHZone — non aspettare di aver finito tutto il modulo. È il motivo per cui esiste questa roadmap: tenere vicini nel tempo "il concetto appena capito" e "il codice che lo usa".
+6. Fai il selftest/quiz della piattaforma **dopo** aver applicato il concetto in KHZone, non prima: ci arriverai avendo già sbagliato (e corretto) qualcosa per conto tuo, ed è lì che un concetto si fissa per davvero. Superarlo ti sblocca la lezione successiva, e il ciclo ricomincia dal punto 1.
+
+### Un notebook per blocco di argomento, non uno per lezione
+
+Il piano gratuito di NotebookLM dà fino a **50 fonti per notebook** (ma fino a 100 notebook, quindi non è quello a scarseggiare). Se apri un notebook nuovo per ogni singola lezione lo saturi di senso, se ne apri uno solo per tutto il corso rischi di saturarlo di fonti: la via di mezzo è **un notebook per Modulo del corso** — cambi notebook solo quando cambia Modulo, non prima. Aggiungici solo le trascrizioni delle vere lezioni video: i quiz e le pagine dei selfwork non hanno una lezione da trascrivere, non sono fonti da caricare.
+
+Applicato al corso che stai seguendo, più o meno così (accorpo i moduli piccolissimi per non sprecare un notebook intero per 1-3 fonti):
+
+1. **Modulo 1 + Modulo 5** — Fondamenta e metodo di studio (pochi video in totale, stessa fase iniziale)
+2. **Modulo 2** — HTML & CSS
+3. **Modulo 3** — Bootstrap
+4. **Modulo 4** — Git & GitHub (poche fonti; per Git comunque affidati soprattutto alla sezione "Git, spiegato qui" più sotto)
+5. **Modulo 6** — JavaScript, linguaggio (è il modulo più lungo del corso: se ti avvicini a 40-45 fonti — non dovrebbe succedere, ma se lo sblocchi tutto insieme con altro materiale extra — dividilo in due, es. "JS - variabili/condizioni/cicli" e "JS - funzioni/array/oggetti")
+6. **Modulo 7** — JavaScript DOM
+7. **Modulo 8** — PHP (PHP e PHP OOP restano insieme: stesso argomento grosso)
+8. **Modulo 9** — Laravel
+9. **Modulo 10** — Laravel Database (Livewire incluso)
+10. **Modulo 11** — Intelligenza Artificiale
+11. **Modulo 12 + Modulo 13** — Agile e Progetto Finale (Scrum è un solo video, il resto sono user story)
+
+Con questi numeri anche il modulo più pesante resta ben sotto le 50 fonti — ma sapere che puoi aprire un "sotto-notebook" quando serve ti evita di ritrovarti bloccato a metà modulo perché hai saturato quello che stavi usando.
+
+### Quando resti bloccato scrivendo codice
+
+(non durante una lezione, ma mentre lavori su KHZone)
 
 - Prima domanda da farti: è un dettaglio di sintassi che dimenticherai comunque tra un'ora, o un dubbio su come le cose si incastrano tra loro?
 - Nel primo caso: documentazione ufficiale o una ricerca mirata (Stack Overflow, MDN per JS/CSS, la documentazione di Laravel) — è esattamente quello che farai da professionista, e ricordarti *dove* cercare conta più che ricordarti la risposta esatta (principio 6).
