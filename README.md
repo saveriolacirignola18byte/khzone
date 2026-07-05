@@ -250,8 +250,9 @@ Qui vale più che altrove il principio 6: non serve sapere a memoria ogni tag o 
 - Viste Blade con componenti riutilizzabili per le card (niente HTML duplicato tra pagine).
 - Una form "segnala un errore in questa scheda" con invio mail vero.
 - Una collection Bruno con le richieste alle tue nuove rotte (`/personaggi`, `/mondi`...), versionata in `/api-tests` insieme al codice: da qui in poi, quando cambi una rotta, aggiorni anche la richiesta di test.
+- *(Bonus, facoltativo)* interfaccia multi-lingua IT/EN: non i contenuti delle schede (quelli restano nella lingua della fonte), solo le etichette dell'interfaccia — un requisito reale del progetto guidato del corso, e qui ci sta bene anche a tema, un'enciclopedia bilingue.
 
-**Da approfondire:** `php artisan make:controller`/`make:mail`; routing (`Route::get`, route model binding, named routes); direttive Blade (`@if`, `@foreach`, `@component`/`<x-component>`) e differenza tra `{{ }}` (escaping automatico) e `{!! !!}`; facade `Illuminate\Support\Facades\Http` per le chiamate esterne lato server; `.env` e `config/services.php` per gestire secrets/API key senza committarle; Mailable e un driver di test per le email (es. log o Mailtrap).
+**Da approfondire:** `php artisan make:controller`/`make:mail`; routing (`Route::get`, route model binding, named routes); direttive Blade (`@if`, `@foreach`, `@component`/`<x-component>`) e differenza tra `{{ }}` (escaping automatico) e `{!! !!}`; facade `Illuminate\Support\Facades\Http` per le chiamate esterne lato server; `.env` e `config/services.php` per gestire secrets/API key senza committarle; Mailable e un driver di test per le email (es. log o Mailtrap); se fai il bonus multi-lingua: file `lang/`, middleware locale, pacchetto `blade-flags` (solo per le bandierine, facoltativo anche quello).
 
 **Sei pronto per:** Selfwork Rotte e Viste, Selfwork Rotte Parametriche, Selfwork Controller, Selfwork Components, Selfwork Invio Mail.
 
@@ -266,10 +267,11 @@ Qui vale più che altrove il principio 6: non serve sapere a memoria ogni tag o 
 - Migrazioni e modelli per salvare in cache le schede recuperate dalle API (rispetta il principio 3: niente chiamata live ad ogni visita).
 - Un comando/job che sincronizza periodicamente i dati (il tuo "generatore di enciclopedia", il cuore del progetto).
 - File storage vero: le immagini delle schede (prese dalla wiki via `prop=images`/`imageinfo`) non vanno linkate a caldo dalla fonte esterna, ma scaricate e salvate nel tuo storage Laravel, con validazione (dimensione, mimetype) prima di salvarle.
+- Ottimizzazione delle immagini in un Job in coda, non nella richiesta HTTP: dopo averle scaricate, ridimensionale/comprimile in background (una libreria tipo Intervention Image o Spatie Image ti risparmia di scriverlo a mano) — è lo stesso requisito reale del progetto guidato del corso, qui applicato a immagini che scarichi tu invece che caricate da un utente.
 - Autenticazione (Fortify) per un'area utente minimale: "la tua collezione personale" di preferiti.
 - CRUD manuale sui preferiti prima di automatizzare oltre.
 
-**Da approfondire:** `php artisan make:model -m` e lo Schema builder nelle migration; Eloquent di base (query builder, `$fillable`/`$guarded`); Task Scheduling (`Kernel::schedule`, `php artisan schedule:run`) per il job di sync periodico; Jobs e Queue — perché non vuoi bloccare una richiesta HTTP mentre sincronizzi centinaia di pagine dalla wiki; cosa fa "sotto" Laravel Fortify (le route di login/registrazione che ti genera) e il middleware `auth`; facade `Storage` (`Storage::disk`, `putFile`); validazione (`$request->validate()`, Form Request).
+**Da approfondire:** `php artisan make:model -m` e lo Schema builder nelle migration; Eloquent di base (query builder, `$fillable`/`$guarded`); Task Scheduling (`Kernel::schedule`, `php artisan schedule:run`) per il job di sync periodico; Jobs e Queue — perché non vuoi bloccare una richiesta HTTP mentre sincronizzi centinaia di pagine dalla wiki (e mentre ridimensioni le immagini); cosa fa "sotto" Laravel Fortify (le route di login/registrazione che ti genera) e il middleware `auth`; facade `Storage` (`Storage::disk`, `putFile`); validazione (`$request->validate()`, Form Request); Intervention Image o Spatie Image per il resize.
 
 **Sei pronto per:** Selfwork Introduzione Database, Selfwork Modelli e Migrazioni, Selfwork File Storage e Validation Rules, Selfwork Fortify e Middleware, Selfwork CRUD.
 
@@ -296,11 +298,20 @@ Qui vale più che altrove il principio 6: non serve sapere a memoria ogni tag o 
 ### Milestone 10 — "Chiedi al Moogle": un assistente sui tuoi dati
 *(Modulo 11 · Intelligenza Artificiale)*
 
-**Obiettivo:** un piccolo RAG, non un chatbot generico.
+**Obiettivo:** capire bene il pattern RAG, non necessariamente costruire un prodotto compiuto.
+
+I video di questo modulo sono pochi e piuttosto corti: la priorità qui è capire bene di cosa parlano — grounding, prompt design, come si struttura un RAG — più che passare tempo a costruire qualcosa di elaborato. Il corso stesso ti farà scrivere un "Progetto RAG con OpenAI" a parte, quindi arrivandoci avendo già chiaro il concetto (anche solo in teoria) sei già avanti.
+
+Prima di scrivere codice, decidi se questa milestone ha senso **dentro** KHZone o **a parte**:
+
+- **Dentro KHZone** se vuoi un vero endpoint/chat che risponde usando i dati in cache — ha senso se hai voglia di gestire il fatto che consuma la tua chiave OpenAI a ogni domanda di chi visita il sito (va quindi protetto, es. dietro autenticazione o con un limite di richieste).
+- **A parte**, come un piccolo script standalone che legge gli estratti già salvati nel database di KHZone e risponde a domande da terminale — se preferisci concentrarti sul capire il pattern senza doverlo cablare nel prodotto pubblico.
+
+Nessuna delle due è "quella giusta": l'obiettivo di questa milestone è aver capito come funziona un RAG, non necessariamente il fatto che sia visibile sul sito finito.
 
 **Cosa fai:**
-- Prompt design su un caso semplice: rispondere a domande sul lore usando **solo** i dati che hai già in database (non quello che il modello sa già di suo — altrimenti non hai costruito niente).
-- Un mini progetto RAG: gli estratti che hai salvato in cache diventano il contesto delle risposte.
+- Prompt design su un caso semplice: rispondere a domande sul lore usando **solo** i dati che hai già in database (non quello che il modello sa già di suo — altrimenti non hai capito il punto dell'esercizio).
+- Un mini progetto RAG (dentro KHZone o a parte, vedi sopra): gli estratti che hai salvato in cache diventano il contesto delle risposte.
 
 **Da approfondire:** differenza tra "il modello lo sa già" e "il modello legge quello che gli metti nel prompt" (grounding); endpoint Chat Completions vs Embeddings di OpenAI; concetto di embedding e similarità vettoriale (a livello teorico, non serve implementarlo da zero); prompt engineering di base — system prompt vs user prompt, few-shot examples; il pattern RAG (Retrieval-Augmented Generation) a grandi linee.
 
