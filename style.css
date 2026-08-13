@@ -1,0 +1,26 @@
+
+html, body {
+    height: 300%;
+    margin:0;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url('./media/KH.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: -1;
+    background-color: #000;  
+   
+}
+
+h1 {
+    font-family: 'KHData.otf', sans-serif;
+    font-size: 3em;
+    color: #fff201;
+    text-align: center;
+    margin-top: 20px;
+}
