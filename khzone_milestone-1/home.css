@@ -1,0 +1,89 @@
+html, body {
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'KHTitle';
+    src: url('font/KHTitle.woff2') format('woff2'),
+         url('font/KHTitle.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    background: #000;
+    isolation: isolate;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('./media/darkside.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    z-index: -1;
+    pointer-events: none;
+}
+
+h1 {
+    font-family: 'KHTitle', sans-serif;
+    font-size: 2rem;
+    color: #ffd901;
+    text-align: center;
+    margin-top: 100px;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0;
+    padding-top: 20px;
+}
+
+h1 a {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5px 8px;
+    border-radius: 8px;
+    font-family: 'KHTitle', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 5rem);
+    line-height: 1.1;
+    color: #ffd901;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    box-sizing: border-box;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+h1 a:hover,
+h1 a:focus,
+h1 a:active {
+    color: #ffd901;
+    border-bottom: 2px solid #ffd901;
+    background-color: #cc1c1c;
+    transition: 0.3s;
+}
