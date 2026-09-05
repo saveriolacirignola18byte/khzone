@@ -4,131 +4,250 @@
 
  <head>
 
-    <meta charset="UTF-8"> 
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KHzone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <link rel="icon" href="./media/sorrri.gif" type="image/gif">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" <link rel="stylesheet"
-
-    <link rel="stylesheet" href="./style.css">
-    
-    <title>"KHzone"</title>
+    <link rel="stylesheet" href="style.css">
 
  </head>
 
-<body id="top">
+ <body>
 
-   <nav>
+<nav class="site-nav">
 
-    <h2><strong>Kingdom Hearts Zone</strong></h2>
+  <div class="container nav-inner">
 
-      <ul>
+  <a href="#top" alt="KINGDOM HEARTS ZONE Title" class="brand">KINGDOM HEARTS ZONE</a>
 
-       <li>Home</li>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">☰</button>
 
-       <li>Protagonisti</li>
+    <ul class="nav-links" id="navLinks">
 
-       <li>Ti stavamo attendendo</li>
+      <li><a href="#top" alt="Home Section">Home</a></li>
+      <li><a href="#film" alt="The Superheroes section">The Superheroes</a></li>
+      <li><a href="#contatti" alt="Ti Stavamo Attendendo section">Ti Stavamo Attendendo</a></li>
 
-      </ul>
+    </ul>
 
-   </nav>
+  </div>
 
- <header>
+</nav>
 
-  <h1><strong>HERO SECTION</strong></h1>
-    
- </header>
+<header class="hero" id="top">
 
-<main>
-   
-   <h2><strong>"THE SUPERHEROES"</strong></h2>
+  <div class="hero-content">
 
- <section>
+    <h1>HERO SECTION</h1>
 
-   <article>
-    
-    <h3><strong>Tetsuya Nomura</strong></h3>
+  </div>
 
-         <a href="https://it.wikipedia.org/wiki/Tetsuya_Nomura">
+  <div class="hero-scroll" alt="Go Down">Scorri in basso</div>
 
-          <img src="./media/tn.webp" alt="Immagine di Tetsuya Nomura" title="FALSUS REX"></a>
+</header>
 
-           <p>Tetsuya Nomura (野村 哲也?, Nomura Tetsuya; Kōchi, 8 ottobre 1970) è un disegnatore e autore di videogiochi giapponese.</p>
-           <p>Ha lavorato come designer e game director per Square Enix (precedentemente Square), occupandosi del character design di molti personaggi della serie Final Fantasy fin dal suo debutto con Final Fantasy V, ed è noto per aver ideato alcuni dei personaggi più rappresentativi dell'azienda come Cloud Strife e Sora. </p>
+<section class="section" id="film">
 
-   </article>
+  <div class="container">
 
-   <article>
-   
-    <h3><strong>Yōko Shimomura</strong></h3>
+    <div class="section-head">
 
-     <a href="https://it.wikipedia.org/wiki/Y%C5%8Dko_Shimomura">
+      <div class="rule"></div>
 
-      <img src="./media/ys.webp" alt="Immagine di Yōko Shimomura" title="Mother of Magic"></a>
+      <h2>The Superheroes</h2>
 
-       <p>Yōko Shimomura (下村 陽子?, Shimomura Yōko; Prefettura di Hyōgo, 19 ottobre 1967) è una compositrice e pianista giapponese, nota soprattutto per i suoi contributi nel settore dei videogiochi.</p>
-       <p>Dal 1993 al 2002 Shimomura ha lavorato per Square, componendo colonne sonore per otto videogiochi.</p>
-       <p>In questo periodo era meglio conosciuta per il suo lavoro sulla colonna sonora di Kingdom Hearts, l'ultimo a cui lavorò prima di lasciare la compagnia.</p>
-       <p>A partire da Mario & Luigi: Superstar Saga, nel 2003, ha iniziato a lavorare come freelance, avviando la propria società di produzione musicale, la Midiplex.</p>
-       <p>Nonostante la nuova attività, ha continuato a lavorare a progetti per Square Enix, società nata dalla fusione fra Square e Enix[1], inclusi tutti i giochi della serie Kingdom Hearts, Super Mario RPG: Legend of the Seven Stars, Xenoblade e Parasite Eve (incluso The 3rd Birthday).</p>
+    </div>
 
-   </article>
+    <div class="row g-4">
 
-   <article>
+       <div class="col-12 col-md-4">
 
-    <h3><strong>Utada Hikaru</strong></h3>
+        <article class="heroes">
 
-     <a href="https://it.wikipedia.org/wiki/Utada_Hikaru">
+          <a class="heroes-poster" href="https://it.wikipedia.org/wiki/Tetsuya_Nomura" alt="Tetsuya Nomura Wikipedia article" target="_blank" rel="noopener">
 
-      <img src="./media/uh.webp" alt="Immagine di Utada Hikaru" title="The Queen"></a>
+            <img src="./media/tn.webp" title="Clicca qui per maggiori informazioni" alt="Tetsuya Nomura Image">
 
-       <p>Hikaru Utada (宇多田ヒカル?, Utada Hikaru; New York, 19 gennaio 1983) è una cantautrice, pianista e produttrice discografica giapponese con cittadinanza statunitense.</p>
-       <p>Con il suo album di debutto First Love, pubblicato all'età di 16 anni, detiene il record di album più venduto nella storia del Giappone con oltre 8.7 milioni di copie vendute in patria e altri 9.91 milioni all'estero, portandola ad un totale di oltre 18 milioni di copie[3].</p>
-       <p>Il secondo album Distance e il terzo album Deep River occupano invece, rispettivamente, la quarta e l'ottava posizione nella classifica degli album più venduti di sempre in Giappone[4].</p>
-       <p>Ha famosamente realizzato, nel 2002, nel 2005 e nel 2019 i brani principali per i videogiochi della Square Enix Kingdom Hearts[5], Kingdom Hearts II e Kingdom Hearts III rispettivamente Hikari, Passion e Chikai.</p>
+          </a>
 
-    </article>
+          <div class="heroes-body">
 
-</main>
+            <h3>Tetsuya Nomura</h3>
 
- <footer>
- 
-  <h3><strong>Kingdom Hearts Zone</strong></h3>
+            <p>Designer e game director per Square Enix, noto per aver ideato alcuni dei personaggi più rappresentativi dell'azienda come Cloud Strife e Sora.</p>
 
-   <ul>
+          </div>
 
-    <p></p>P.IVA 01234567890</li>
+        </article>
 
-    <p>Progetto realizzato da SuperPlayers18, Bari (IT)</p>
+      </div>
+     
+     <div class="col-12 col-md-4">
 
-  <h4>Sulla Pagina</h4>
+        <article class="heroes">
 
-    <li>Home</li>
+          <a class="heroes-poster" href="https://it.wikipedia.org/wiki/Y%C5%8Dko_Shimomura" alt="Yoko Shimomura Wikipedia article" target="_blank" rel="noopener">
 
-    <li>Protagonisti</li>
+          <img src="./media/ys.webp" alt="Yoko Shimomura Image">
+          </a>
 
-    <li>Ti stavamo attendendo</li>
+          <div class="heroes-body">
 
-  <h4>Seguici</h4>
+            <h3>Yoko Shimomura</h3>
 
-    <li><a href="https://www.instagram.com/depthsofwikipedia/" title="Clicca qui">Instagram</a></li>
+            <p>Compositrice e pianista giapponese, notaper il suo lavoro sulle colonne sonore di Kingdom Hearts, inclusi Super Mario RPG: Legend of the Seven Stars, Xenoblade e Parasite Eve (incluso The 3rd Birthday).</p>
 
-    <li><a href="https://x.com/Wikipedia" title="Clicca qui">X</a></li>
+          </div>
 
-    <li><a href="https://www.facebook.com/Wikipedia" title="Clicca qui">Facebook</a></li>
+        </article>
 
-    <li><a href="https://www.youtube.com/Wikipedia" title="Clicca qui">YouTube</a></li>
-    
-    <p>Copyright © 2026 - All Rights Reserved</p>
+      </div>
 
-   </ul>
+    <div class="col-12 col-md-4">
 
- </footer>
+        <article class="heroes">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          <a class="heroes-poster" href="https://it.wikipedia.org/wiki/Utada_Hikaru" target="_blank" rel="noopener">
+
+            <img src="./media/uh.webp" alt="Utada Hikaru Image">
+          </a>
+
+          <div class="heroes-body">
+            <h3>Utada Hikaru</h3>
+            <p>Cantautrice, pianista e produttrice discografica giapponese, madre dei brani principali per i videogiochi della Square Enix Kingdom Hearts, Kingdom Hearts II e Kingdom Hearts III rispettivamente Hikari, Passion e Chikai.</p>
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTATTI / LAVORA CON NOI -->
+<section class="section contact" id="contatti">
+
+  <div class="container">
+
+    <div class="row align-items-center g-5">
+
+      <div class="col-12 contact-copy">
+
+        <h2>Ti Stavamo Attendendo</h2>
+
+        <p class="col-12 text-center">Iscriviti alla nostra newsletter per non perdere nessuna novità sul magico mondo di Kingdom Hearts!</p>
+
+      </div>
+
+      <div class="col-12">
+
+        <form id="workForm">
+
+          <div class="form-field">
+
+            <label for="email">Inserisci qui la tua email</label>
+
+            <input type="email" id="email" name="email" placeholder="nome@esempio.it" required>
+
+          </div>
+
+          <div class="form-field">
+
+            <label for="password">Crea una password</label>
+
+            <input type="password" id="password" name="password" placeholder="Almeno 8 caratteri" required minlength="8">
+
+          </div>
+
+          <button type="button" class="form-submit">Join your Heart With Ours!!! </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- FOOTER -->
+<footer>
+
+  <div class="container">
+
+    <div class="row g-4">
+
+      <div class="col-12 col-md-4">
+
+        <h2>KINGDOM HEARTS ZONE</h2>
+
+        <p>P.IVA 01234567890</p>
+
+        <p>Un progetto realizzato da Saverio Lacirignola, Bari (IT)</p>
+
+      </div>
+
+      <div class="col-6 col-md-4">
+
+        <div class="col-title">SUL SITO</div>
+
+        <ul>
+
+          <li><a href="#top">Home</a></li>
+          <li><a href="#film">Film</a></li>
+          <li><a href="#contatti">Lavora con noi</a></li>
+
+        </ul>
+
+      </div>
+
+      <div class="col-6 col-md-4">
+
+        <div class="col-title">PAGINE SOCIAL</div>
+
+        <div class="social-row">
+
+          <a href="https://www.instagram.com/kingdomhearts/" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+
+          <a href="https://www.facebook.com/kingdomhearts/" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+
+          <a href="https://twitter.com/kingdomhearts" aria-label="X / Twitter"><i class="bi bi-twitter-x"></i></a>
+
+          <a href="https://www.youtube.com/kingdomhearts" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      © Copyright 2026 — Tutti i diritti riservati
+
+    </div>
+
+  </div>
+
+</footer>
+
+ <script>
+   const navToggle = document.getElementById('navToggle');
+   const navLinks = document.getElementById('navLinks');
+
+   navToggle.addEventListener('click', () => {
+     navLinks.classList.toggle('open');
+   });
+
+   navLinks.querySelectorAll('a').forEach((link) => {
+     link.addEventListener('click', () => navLinks.classList.remove('open'));
+   });
+ </script>
 
 </body>
 
