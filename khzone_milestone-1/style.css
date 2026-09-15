@@ -7,6 +7,16 @@ html {
     scroll-behavior: smooth;
 }
 
+:root{
+    --reel-black: #0c0c0f;
+    --surface: #17171c;
+    --surface-2: #1f1f26;
+    --screen-white: #f3ede0;
+    --marquee-gold: #c9a227;
+    --velvet-red: #8a1c1c;
+    --muted: #8f8f97;
+  }
+
 * {
     box-sizing: border-box;
 }
